@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>keto</title>
+      <title>난다펜션</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -41,7 +41,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                              <a th:href="@{/}"><img src="img/logo.png" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -53,23 +53,17 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="room.html">Our room</a>
-                              </li>
                               <li class="nav-item active">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
+                                 <a class="nav-link" th:href="@{/}">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="blog.html">Blog</a>
+                                 <a class="nav-link" th:href="@{/room}">객실 예약</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
+                                 <a class="nav-link" th:href="@{/gallery}">주변 관광지</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/contact}">오시는 길</a>
                               </li>
                            </ul>
                         </div>
@@ -86,7 +80,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                    <h2>gallery</h2>
+                    <h2>주변 관광지</h2>
                   </div>
                </div>
             </div>
@@ -95,47 +89,13 @@
       <!-- gallery -->
       <div  class="gallery">
          <div class="container">
-           
-            <div class="row">
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery1.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery2.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery3.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery4.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery5.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery6.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery7.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery8.jpg" alt="#"/></figure>
-                  </div>
+            <div class="row" style="border: 1px solid #dee2e6; align-items : center;">
+               <div class="col-md-5"><figure><img src="img/railbike.jpg"></figure></div>
+               <div class="col-md-6"> 스카이바이크는 대천해수욕장 분수광장과 짚트랙 시설 사이에 있습니다. <br/>
+                                      자전거 페달 방식의 하늘 자전거로 대천해수욕장부터 대천항 간의 해안선을 따라 왕복 2.3km <br/>
+                                      약 40분간 즐길 수 있습니다.<br/>
+                  <button type="button" class="btn btn-sm"><a href="https://www.brsisul.or.kr/kor/sub02_03_02.do">상세페이지</a></button>
+
                </div>
             </div>
          </div>
@@ -150,33 +110,25 @@
                   <div class=" col-md-4">
                      <h3>Contact US</h3>
                      <ul class="conta">
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
-                        <li><i class="fa fa-mobile" aria-hidden="true"></i> +01 1234569540</li>
-                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>충남 보령시 고잠2길 20-5 난다펜션</li>
+                        <li><i class="fa fa-mobile" aria-hidden="true"></i>010-7179-4299</li>
                      </ul>
                   </div>
                   <div class="col-md-4">
                      <h3>Menu Link</h3>
                      <ul class="link_menu">
                         <li><a href="#">Home</a></li>
-                        <li><a href="about.html"> about</a></li>
-                        <li><a href="room.html">Our Room</a></li>
-                        <li class="active"><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a th:href="@{/room}">객실 예약</a></li>
+                        <li><a th:href="@{/gallery}">주변 관광지</a></li>
+                        <li><a th:href="@{/contact}">오시는 길</a></li>
                      </ul>
                   </div>
-                  <div class="col-md-4">
-                     <h3>News letter</h3>
-                     <form class="bottom_form">
-                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
-                        <button class="sub_btn">subscribe</button>
-                     </form>
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                  <div class=" col-md-4">
+                     <h3>사업자 정보</h3>
+                     <ul class="conta">
+                        <li> 대표자: 유연대 </li>
+                        <li> 사업자등록번호: 249-10-00303 </li>
+                        <li> 계좌번호: 국민은행 50324-03-10365 </li>
                      </ul>
                   </div>
                </div>
@@ -185,11 +137,12 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-10 offset-md-1">
+
                         <p>
-                           © 2019 All Rights Reserved. Design by <a href="https://html.design/"> Free Html Templates</a>
-                           <br><br>
-                           Distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-                           </p>
+                           © 2025 All Rights Reserved.</a>
+                           <a>Distributed YDH</a>
+                        </p>
+
                      </div>
                   </div>
                </div>
