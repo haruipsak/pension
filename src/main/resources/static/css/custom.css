@@ -1,0 +1,24 @@
+.gal-btn {
+    margin-bottom: 10px
+}
+
+.gal-con {
+    border: 1px solid #dee2e6;
+    align-items : center;
+    margin-bottom: 20px;
+}
+
+.cntct-con{
+    border: 1px solid #dee2e6;
+    align-items : center;
+    margin : 20px;
+    background-color: #fafafa;
+}
+
+.icon-style{
+    padding: 10px;
+    width: 60px;
+    background-color: #FFFFFF;
+    border-radius: 40%;
+    margin: 20px;
+}

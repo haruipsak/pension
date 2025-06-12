@@ -28,6 +28,7 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <link rel="stylesheet" href="css/custom.css">
    </head>
    <!-- body -->
    <body class="main-layout inner_page">
@@ -53,13 +54,13 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item active">
+                              <li class="nav-item">
                                  <a class="nav-link" th:href="@{/}">Home</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" th:href="@{/room}">객실 예약</a>
                               </li>
-                              <li class="nav-item">
+                              <li class="nav-item active">
                                  <a class="nav-link" th:href="@{/gallery}">주변 관광지</a>
                               </li>
                               <li class="nav-item">
@@ -89,13 +90,49 @@
       <!-- gallery -->
       <div  class="gallery">
          <div class="container">
-            <div class="row" style="border: 1px solid #dee2e6; align-items : center;">
-               <div class="col-md-5"><figure><img src="img/railbike.jpg"></figure></div>
-               <div class="col-md-6"> 스카이바이크는 대천해수욕장 분수광장과 짚트랙 시설 사이에 있습니다. <br/>
-                                      자전거 페달 방식의 하늘 자전거로 대천해수욕장부터 대천항 간의 해안선을 따라 왕복 2.3km <br/>
-                                      약 40분간 즐길 수 있습니다.<br/>
-                  <button type="button" class="btn btn-sm"><a href="https://www.brsisul.or.kr/kor/sub02_03_02.do">상세페이지</a></button>
-
+            <div class="row gal-con">
+               <div class="col-md-5"><figure><img src="img/bada.jpg" alt="대천해수욕장"></figure></div>
+               <div class="col-md-6">
+                  <h3>대천 해수욕장</h3>
+                  <div> 서해안 최대의 해수욕장으로, 3.5 km의 백사장 길이와 100 m의 폭을 자랑합니다. <br/>
+                     젊은과 낭만, 안락함과 자연미가 어우러져 젊은 연인들과 가족 단위 휴식처로 인기가 높습니다. <br/>
+                     여름에는 머드축제가 개최됩니다.
+                  </div>
+                  <button type="button" class="btn btn-sm gal-btn"><a href="http://www.daecheonbeach.kr/" target="_blank">상세페이지</a></button>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row gal-con">
+               <div class="col-md-5"><figure><img src="img/railbike.jpg" alt="레일바이크"></figure></div>
+               <div class="col-md-6">
+                  <h3>스카이바이크</h3>
+                  <div>대천해수욕장 분수광장과 짚트랙 시설 사이에 있습니다. <br/>
+                       자전거 페달 방식의 하늘 자전거로 대천해수욕장부터 대천항 간의 해안선을 따라 왕복 2.3km <br/>
+                       약 40분간 즐길 수 있습니다.<br/>
+                  </div>
+                  <button type="button" class="btn btn-sm gal-btn"><a href="https://www.brsisul.or.kr/kor/sub02_03_02.do" target="_blank">상세페이지</a></button>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row gal-con">
+               <div class="col-md-5"><figure><img src="img/ziptrack.jpg" alt="짚트랙"></figure></div>
+               <div class="col-md-6">
+                  <h3>짚 트랙</h3>
+                  <div> 짚 트랙은 높이 52m 탑승거리 613m의 바다위를 줄 하나에 몸을 달고 활강하여 <br/>
+                        하늘을 날고 싶은 욕망, 스릴과 즐거움을 만끽할 수 있습니다. </div>
+                  <button type="button" class="btn btn-sm gal-btn"><a href="http://daecheonziptrek.com/bbs/board.php?bo_table=ziptrek&wr_id=1" target="_blank">상세페이지</a></button>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row gal-con" >
+               <div class="col-md-5"><figure><img src="img/daechun-hang.jpg" alt="대천항"></figure></div>
+               <div class="col-md-6">
+                  <h3>대천항</h3>
+                  <div>대천해수욕장에서 1 km에 있는 항구입니다. 각 섬으로 들어가는 여객선 터미널이 있습니다. <br/> 수산시장이 있어 싱싱한 횟감을 구매하실 수 있습니다. </div>
+                  <button type="button" class="btn btn-sm gal-btn"><a href="https://www.brcn.go.kr/prog/attraction/tour/sub01_01/view.do?attractionCode=48" target="_blank">상세페이지</a></button>
                </div>
             </div>
          </div>
