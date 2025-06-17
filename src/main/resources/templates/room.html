@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>난다펜션</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo">
+                              <a th:href="@{/}"><img src="img/logo.png" alt="#" /></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item ">
+                                 <a class="nav-link" th:href="@{/}">Home</a>
+                              </li>
+                              <li class="nav-item active" >
+                                 <a class="nav-link" th:href="@{/room}">객실 예약</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/gallery}">주변 관광지</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/contact}">오시는 길</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header inner -->
+      <!-- end header -->
+      <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>객실 예약</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- 객실 정보-->
+      <div  class="our_room">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <p  class="margin_0">원하시는 객실을 선택해주세요</p>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/101.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>커플침대룸</h3>
+                        <p>기준 인원 2인 / 최대 3인 </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/102.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>커플온돌룸</h3>
+                        <p>기준 인원 2인 / 최대 3인 </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/204.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>원룸</h3>
+                        <p>기준 인원 4인 / 최대 5인 </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/103.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>투룸</h3>
+                        <p>기준 인원 4인 / 최대 6인 </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/304.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>복층 원룸</h3>
+                        <p>기준 인원 5인 / 최대 7인 </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="img/302.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>복층 투룸</h3>
+                        <p>기준 인원 6인 / 최대 10인 </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end our_room -->
+     
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class=" col-md-4">
+                     <h3>Contact US</h3>
+                     <ul class="conta">
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>충남 보령시 고잠2길 20-5 난다펜션</li>
+                        <li><i class="fa fa-mobile" aria-hidden="true"></i>010-7179-4299</li>
+                     </ul>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Menu Link</h3>
+                     <ul class="link_menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a th:href="@{/room}">객실 예약</a></li>
+                        <li><a th:href="@{/gallery}">주변 관광지</a></li>
+                        <li><a th:href="@{/contact}">오시는 길</a></li>
+                     </ul>
+                  </div>
+                  <div class=" col-md-4">
+                     <h3>사업자 정보</h3>
+                     <ul class="conta">
+                        <li> 대표자: 유연대 </li>
+                        <li> 사업자등록번호: 249-10-00303 </li>
+                        <li> 계좌번호: 국민은행 50324-03-10365 </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-10 offset-md-1">
+
+                        <p>
+                           © 2025 All Rights Reserved.</a>
+                           <a>Distributed YDH</a>
+                        </p>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
+</html>
