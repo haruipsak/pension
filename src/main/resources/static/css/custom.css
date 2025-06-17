@@ -22,3 +22,43 @@
     border-radius: 40%;
     margin: 20px;
 }
+
+.contac-trans{
+    border-radius: 5px;
+    border: #0f3e68 solid 1px;
+    color: #0f3e68;
+    padding: 0 5px;
+    margin: 5px 5px 0 5px;
+    text-align: center;
+}
+
+.contac-method{
+    border-radius: 5px;
+    border: #0f3e68 solid 1px;
+    color: #0f3e68;
+    padding: 0 5px;
+    margin: 5px 5px 0 5px;
+    font-size: 15px;
+    text-align: center;
+}
+.contac-jak{
+    color: #0f3e68;
+    margin-right: 5px;
+    margin-left:5px;
+    margin-top: 5px;
+    text-align: center;
+}
+.contac-jak-one{
+    vertical-align:middle;
+    color: #0f3e68;
+    padding: 5px;
+}
+.arrow-box {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent ;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid #0f69c6;
+
+}
