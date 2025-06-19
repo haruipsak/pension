@@ -68,6 +68,9 @@
                               <li class="nav-item">
                                  <a class="nav-link" th:href="@{/contact}">오시는 길</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/adminLogin}">관리자 페이지</a>
+                              </li>
                            </ul>
                         </div>
                      </nav>
@@ -114,23 +117,21 @@
                   <div class="col-md-5">
                      <div class="book_room">
                         <h1>예약하기</h1>
-                        <form class="book_now">
+                        <div class="book_now">
                            <div class="row">
                               <div class="col-md-12">
                                  <span>입실 날짜</span>
-                                 <img class="date_cua" src="images/date.png">
                                  <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
                               </div>
                               <div class="col-md-12">
                                  <span>퇴실 날짜</span>
-                                 <img class="date_cua" src="images/date.png">
                                  <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
                               </div>
                               <div class="col-md-12">
-                                 <button class="book_btn">객실 검색하기</button>
+                               <a th:href="@{/booking}">  <button  class="book_btn">객실 검색하기</button> </a>
                               </div>
                            </div>
-                        </form>
+                        </div>
                      </div>
                   </div>
                </div>
