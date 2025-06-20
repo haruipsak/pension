@@ -5,7 +5,7 @@ FROM openjdk:21-slim
 WORKDIR /app
 
 # Maven 빌드 후 생성된 JAR 파일을 컨테이너의 /app 디렉터리로 복사 (파일명은 실제 빌드 산출물에 맞게 수정)
-COPY target/your-app.jar app.jar
+COPY target/pension-0.0.1-SNAPSHOTp.jar app.jar
 
 # 기본 8080 포트 개방
 EXPOSE 8080
