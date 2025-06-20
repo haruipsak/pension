@@ -2,7 +2,7 @@
 FROM openjdk:21-slim
 
 # 작업 디렉터리 설정
-WORKDIR /pension
+WORKDIR /app
 
 # Maven
 COPY target/pension-0.0.1-SNAPSHOT.jar app.jar
