@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>난다펜션 예약 시스템</title>
+    <link rel="stylesheet" href="/css/reservation.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>난다펜션 예약 시스템</h1>
+            <div class="selection-buttons">
+                <button id="dateSelectionBtn">
+                    <span id="checkInDisplay">체크인 날짜</span> - <span id="checkOutDisplay">체크아웃 날짜</span>
+                </button>
+                <button id="personSelectionBtn">
+                    <span id="personsDisplay">인원 선택</span>
+                </button>
+            </div>
+        </div>
+
+        <ul class="room-list" id="roomList">
+            <p>날짜와 인원을 선택하시면 예약 가능한 객실이 표시됩니다.</p>
+        </ul>
+    </div>
+
+    <div id="dateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeDateModal()">&times;</span>
+            <h2>체크인/체크아웃 날짜 선택</h2>
+            <div id="calendarContainer">
+            </div>
+            <div class="modal-buttons">
+                <button onclick="applyDateSelection()">선택 완료</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="personModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePersonModal()">&times;</span>
+            <h2>인원 선택</h2>
+            <div class="person-selector">
+                <div class="person-row">
+                    <span>성인</span>
+                    <div class="person-counter">
+                        <button id="adultsDecreaseBtn" onclick="changePersonCount('adults', -1)">-</button>
+                        <input type="number" id="adultsInput" value="2" min="1" readonly>
+                        <button id="adultsIncreaseBtn" onclick="changePersonCount('adults', 1)">+</button>
+                    </div>
+                </div>
+                <div class="person-row">
+                    <span>아동</span>
+                    <div class="person-counter">
+                        <button id="childrenDecreaseBtn" onclick="changePersonCount('children', -1)">-</button>
+                        <input type="number" id="childrenInput" value="0" min="0" readonly>
+                        <button id="childrenIncreaseBtn" onclick="changePersonCount('children', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button onclick="applyPersonSelection()">선택 완료</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert/Confirm Modal -->
+    <div id="customAlertModal" class="modal">
+        <div class="modal-content alert-modal-content">
+            <h2 id="alertTitle">알림</h2>
+            <p id="alertMessage">메시지 내용</p>
+            <div id="alertButtons" class="modal-buttons">
+                <!-- Buttons will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/reservation.js"></script>
+</body>
+
+</html>
+

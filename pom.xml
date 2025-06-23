@@ -11,7 +11,7 @@
     <groupId>com</groupId>
     <artifactId>pension</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>pension</name>
     <description>pension</description>
     <url/>
@@ -76,4 +76,20 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>3.0.3</version> </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.4.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
