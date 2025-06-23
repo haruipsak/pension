@@ -1,7 +1,7 @@
 package com.pension.controller;
 
-import com.pension.service.pensionService;
-import com.pension.vo.pensionVO;
+//import com.pension.service.pensionService;
+//import com.pension.vo.pensionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class pensionControl {
-
-    @Autowired
-    pensionService pensionService;
+//
+//    @Autowired
+//    pensionService pensionService;
 
     @RequestMapping("/")
     public String index() {
@@ -55,16 +55,16 @@ public class pensionControl {
         return "reservation";
     }
 
-    @RequestMapping("/checkId")
-    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
-        boolean checkTrue = false;
-
-        checkTrue = pensionService.checkId(userId, userPw);
-
-        if(checkTrue){
-            return "redirect:/controlBooking";
-        } else
-            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-        return "redirect:/adminLogin";
-    }
+//    @RequestMapping("/checkId")
+//    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
+//        boolean checkTrue = false;
+//
+//        checkTrue = pensionService.checkId(userId, userPw);
+//
+//        if(checkTrue){
+//            return "redirect:/controlBooking";
+//        } else
+//            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+//        return "redirect:/adminLogin";
+//    }
 }
