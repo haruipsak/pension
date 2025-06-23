@@ -1,19 +1,28 @@
 package com.pension.controller;
 
-import com.pension.service.pensionService;
-import com.pension.vo.pensionVO;
+//import com.pension.service.pensionService;
+//import com.pension.vo.pensionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class pensionControl {
+public class PensionControl {
+    private final RestTemplate restTemplate;
+
+    /** application.properties 에 세팅된 외부 API 기본 URL */
+    @Value("${booking.api.base}")
+    private String bookingApiBase;
 
     @Autowired
-    pensionService pensionService;
+    public PensionControl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+//
+//    @Autowired
+//    pensionService pensionService;
 
     @RequestMapping("/")
     public String index() {
@@ -50,16 +59,22 @@ public class pensionControl {
         return "adminLogin";
     }
 
-    @RequestMapping("/checkId")
-    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
-        boolean checkTrue = false;
-
-        checkTrue = pensionService.checkId(userId, userPw);
-
-        if(checkTrue){
-            return "redirect:/controlBooking";
-        } else
-            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-        return "redirect:/adminLogin";
+    @RequestMapping("/reservation")
+    public String reservation(){
+        return "reservation";
     }
+
+
+//    @RequestMapping("/checkId")
+//    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
+//        boolean checkTrue = false;
+//
+//        checkTrue = pensionService.checkId(userId, userPw);
+//
+//        if(checkTrue){
+//            return "redirect:/controlBooking";
+//        } else
+//            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+//        return "redirect:/adminLogin";
+//    }
 }
