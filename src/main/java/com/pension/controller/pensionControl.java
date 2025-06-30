@@ -1,16 +1,26 @@
 package com.pension.controller;
 
 import com.pension.service.pensionService;
-import com.pension.vo.pensionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class pensionControl {
+public class PensionControl {
+    private final RestTemplate restTemplate;
+
+    /** application.properties 에 세팅된 외부 API 기본 URL */
+    @Value("${booking.api.base}")
+    private String bookingApiBase;
+
+    @Autowired
+    public PensionControl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Autowired
     pensionService pensionService;
@@ -49,6 +59,12 @@ public class pensionControl {
     public String adminLogin(){
         return "adminLogin";
     }
+
+    @RequestMapping("/reservation")
+    public String reservation(){
+        return "reservation";
+    }
+
 
     @RequestMapping("/checkId")
     public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){

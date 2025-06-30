@@ -1,12 +1,13 @@
 package com.pension.controller;
 
-//import com.pension.service.pensionService;
-//import com.pension.vo.pensionVO;
+import com.pension.service.pensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PensionControl {
@@ -20,9 +21,9 @@ public class PensionControl {
     public PensionControl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-//
-//    @Autowired
-//    pensionService pensionService;
+
+    @Autowired
+    pensionService pensionService;
 
     @RequestMapping("/")
     public String index() {
@@ -65,16 +66,16 @@ public class PensionControl {
     }
 
 
-//    @RequestMapping("/checkId")
-//    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
-//        boolean checkTrue = false;
-//
-//        checkTrue = pensionService.checkId(userId, userPw);
-//
-//        if(checkTrue){
-//            return "redirect:/controlBooking";
-//        } else
-//            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-//        return "redirect:/adminLogin";
-//    }
+    @RequestMapping("/checkId")
+    public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
+        boolean checkTrue = false;
+
+        checkTrue = pensionService.checkId(userId, userPw);
+
+        if(checkTrue){
+            return "redirect:/controlBooking";
+        } else
+            redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+        return "redirect:/adminLogin";
+    }
 }
