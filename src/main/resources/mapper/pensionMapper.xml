@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pension.mapper.pensionMapper">
-    <select id="selectAdmin" resultType="com.pension.vo.pensionVO">
-        SELECT USERID FROM ADMIN
+    <select id="selectAdmin" resultType="com.pension.vo.adminVo">
+        SELECT USERID
+        FROM ADMIN
         WHERE USERID = #{userId}
-        AND USERPW = #{userPw}
+            AND USERPW = #{userPw}
     </select>
+
+    <insert id="savePrice">
+        UPDATE roomprice
+            SET
+            roomType = #{roomType},
+            roomP = #{roomPrice},
+            roomSp = #{roomSPrice},
+            roomUp = #{roomUPrice}
+        WHERE roomType = #{roomType}
+    </insert>
+    
+    <select id="slctRoomPrice" resultType="java.util.Map">
+        SELECT A.roomType AS "roomType",
+               A.roomId AS "roomId",
+               A.roomNm AS "roomNm",
+               COALESCE(B.roomP, '') AS "roomPrice",
+               COALESCE(B.roomSp, '') AS "roomSPrice",
+               COALESCE(B.roomUp, '') AS "roomUPrice"
+        FROM room A
+        LEFT JOIN roomprice B
+            ON A.roomType = B.roomType
+    </select>
+
 </mapper>
