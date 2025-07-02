@@ -60,5 +60,8 @@
     border-bottom: 10px solid transparent;
     border-right: 10px solid transparent;
     border-left: 10px solid #0f69c6;
+}
 
+.inputPeriod {
+    width: 40%;
 }

@@ -9,6 +9,8 @@ import java.util.Map;
 @Mapper
 public interface pensionMapper {
     ArrayList<String> selectAdmin(String userId, String userPw);
-    List<Map<String, Object>> slctRoomPrice(String roomType);
-    void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice);
+    List<Map<String, Object>> slctRoomPrice(String roomType, String selectSpecific);
+    void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice, String roomSfPrice);
+    List<Map<String, Object>> slctPeriod();
+    public void savePeriod(String beachOpenDate, String beachCloseDate, String festivalOpenDate, String festivalCloseDate, String specialStart, String specialEnd);
 }

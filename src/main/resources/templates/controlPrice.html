@@ -26,11 +26,12 @@
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
             media="screen">
+      <link rel="stylesheet" href="css/custom.css">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1cbcc6060a0aaa920d7ff019f63b4816"></script>
-
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -77,19 +78,40 @@
       <!-- end header inner -->
       <!-- end header -->
       <div class="container">
-        <table class="table table-striped-columns">
+         <table class="table table-striped-columns" style="text-align: center">
+            <thead>
+            <tr>
+               <th>개장 기간</th>
+               <th>머드 축제 기간</th>
+               <th>특별 기간</th>
+               <th></th>
+            </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><input class ="inputPeriod" type="text" id="beachOpenDate" placeholder="개장일 선택"> - <input class ="inputPeriod" type="text" id="beachCloseDate" placeholder="폐장일 선택"> </td>
+                  <td><input class ="inputPeriod" type="text" id="festivalOpenDate" placeholder="축제 시작일 선택"> - <input class ="inputPeriod" type="text" id="festivalCloseDate" placeholder="축제 종료일 선택"></td>
+                  <td><input class ="inputPeriod" type="text" id="specialStart" placeholder="특별 시작일 선택"> - <input class ="inputPeriod" type="text" id="specialEnd" placeholder="특별 종료일 선택"></td>
+                  <td>
+                     <button type="button" class="btn btn-secondary" th:onclick="savePeriod()">저장</button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+        <table class="table table-striped-columns" style="text-align: center">
            <thead>
             <tr>
                <th>방 유형</th>
                <th>기본 가격</th>
                <th>개장 시기 가격</th>
                <th>머드 축제 가격</th>
+               <th>특별 가격</th>
             </tr>
            </thead>
            <tbody>
               <tr>
                  <td>
-                    <select id="roomTypeSelect"> <option value=" ">선택</option>
+                    <select id="roomTypeSelect" th:onclick="selectType()"> <option value=" ">선택</option>
                        <option value="coupleRoom">커플룸</option>
                        <option value="familyTwo">투룸</option>
                        <option value="familyOne">원룸</option>
@@ -100,32 +122,32 @@
                  <td><input type="text" id='roomPrice'></input></td>
                  <td><input type="text" id="roomSPrice"></input></td>
                  <td><input type="text" id="roomUPrice"></input></td>
+                 <td><input type="text" id="roomSfPrice"></input></td>
                  <td>
-                    <button type="button" th:onclick="savePrice()">데이터 전송</button>
+                    <button type="button" class="btn btn-secondary" th:onclick="savePrice()">저장</button>
               </td>
               </tr>
            </tbody>
         </table>
-        <button type="submit">확인</button>
-         <table class="table table-striped-columns">
+         <table class="table table-striped-columns" style="text-align: center">
             <thead>
                <tr>
-                  <th><input type="checkbox" value="selectAll" name="room" th:onclick="selectAll(this)"/></th>
                   <th>방 유형</th>
                   <th>방 이름</th>
                   <th>기본 가격</th>
                   <th>개장 시기 가격</th>
                   <th>머드 축제 가격</th>
+                  <th>특별 가격</th>
                </tr>
             </thead>
             <tbody>
             <tr th:each="room : ${roomPrice}">
-               <td><input type="checkbox" value="roomEach" name="room"/></td>
                <td th:text="${room.roomType}"></td>
                <td th:text="${room.roomNm}"></td>
                <td class="price-value" th:text="${room.roomPrice}"></td>
                <td class="price-value" th:text="${room.roomSPrice}"></td>
                <td class="price-value" th:text="${room.roomUPrice}"></td>
+               <td class="price-value" th:text="${room.roomSfPrice}"></td>
             </tr>
             </tbody>
          </table>
@@ -174,5 +196,9 @@
       <script src="js/custom.js"></script>
       <!-- js -->
       <script src="js/bookingPrice.js"></script>
+      <!--flatpicker-->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
    </body>
 </html>

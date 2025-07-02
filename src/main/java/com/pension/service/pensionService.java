@@ -21,8 +21,8 @@ public class pensionService {
         }  else return false;
     }
 
-    public List<Map<String, Object>> slctRoomPrice(String roomType) {
-        List<Map<String, Object>> resultList = pensionMapper.slctRoomPrice(roomType);
+    public List<Map<String, Object>> slctRoomPrice(String roomType, String selectSpecific) {
+        List<Map<String, Object>> resultList = pensionMapper.slctRoomPrice(roomType, selectSpecific);
         resultList.forEach(a->{
           String room = a.get("roomType").toString();
           if(room.contains("coupleRoom")){
@@ -40,7 +40,16 @@ public class pensionService {
         return resultList;
     }
 
-    public void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice){
-        pensionMapper.savePrice(roomType, roomPrice, roomSPrice, roomUPrice);
+    public void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice, String roomSfPrice){
+        pensionMapper.savePrice(roomType, roomPrice, roomSPrice, roomUPrice, roomSfPrice);
+    }
+
+    public List<Map<String, Object>> slctPeriod() {
+        List<Map<String, Object>> resultList = pensionMapper.slctPeriod();
+        return resultList;
+    }
+
+    public void savePeriod(String beachOpenDate, String beachCloseDate, String festivalOpenDate, String festivalCloseDate, String specialStart, String specialEnd){
+        pensionMapper.savePeriod(beachOpenDate, beachCloseDate, festivalOpenDate, festivalCloseDate, specialStart,specialEnd);
     }
 }

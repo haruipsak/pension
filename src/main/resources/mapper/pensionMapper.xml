@@ -8,26 +8,51 @@
             AND USERPW = #{userPw}
     </select>
 
-    <insert id="savePrice">
+    <update id="savePrice">
         UPDATE roomprice
             SET
             roomType = #{roomType},
             roomP = #{roomPrice},
             roomSp = #{roomSPrice},
-            roomUp = #{roomUPrice}
+            roomUp = #{roomUPrice},
+            roomSfPrice = #{roomSfPrice}
         WHERE roomType = #{roomType}
-    </insert>
+    </update>
     
     <select id="slctRoomPrice" resultType="java.util.Map">
         SELECT A.roomType AS "roomType",
-               A.roomId AS "roomId",
-               A.roomNm AS "roomNm",
-               COALESCE(B.roomP, '') AS "roomPrice",
-               COALESCE(B.roomSp, '') AS "roomSPrice",
-               COALESCE(B.roomUp, '') AS "roomUPrice"
+            A.roomId AS "roomId",
+            A.roomNm AS "roomNm",
+            COALESCE(B.roomP, '') AS "roomPrice",
+            COALESCE(B.roomSp, '') AS "roomSPrice",
+            COALESCE(B.roomUp, '') AS "roomUPrice",
+            COALESCE(B.roomSfPrice, '') AS "roomSfPrice"
         FROM room A
         LEFT JOIN roomprice B
             ON A.roomType = B.roomType
+        <if test="roomType != null and selectSpecific != null">
+           WHERE A.roomType = #{roomType}
+        </if>
     </select>
 
+    <select id="slctPeriod" resultType="java.util.Map">
+        SELECT beachOpenDate,
+            beachCloseDate,
+            festivalOpenDate,
+            festivalCloseDate,
+            specialStart,
+            specialEnd
+        FROM period
+    </select>
+
+    <update id="savePeriod">
+        UPDATE priod
+        SET
+            beachOpenDate = #{beachOpenDate},
+            beachCloseDate = #{beachCloseDate},
+            festivalOpenDate = #{festivalOpenDate},
+            festivalCloseDate = #{festivalCloseDate},
+            specialStart = #{specialStart},
+            specialEnd = #{specialEnd}
+    </update>
 </mapper>

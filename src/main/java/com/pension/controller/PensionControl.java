@@ -3,6 +3,7 @@ package com.pension.controller;
 import com.pension.service.pensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,21 +76,30 @@ public class PensionControl {
     }
 
     @RequestMapping("/controlPrice")
-    public String controlPrice(@RequestParam(value = "roomType", required = false) String roomType,
-                               @RequestParam(value = "roomPrice", required = false) String roomPrice,
-                               @RequestParam(value = "roomSPrice", required = false) String roomSPrice,
-                               @RequestParam(value = "roomUPrice", required = false) String roomUPrice,
+    public Object controlPrice(@RequestParam(value = "roomType", required = false) String roomType,
+                               @RequestParam(value = "selectSpecific", required = false) String selectSpecific,
                                Model model){
-        if (roomType != null){
-            pensionService.savePrice(roomType, roomPrice, roomSPrice, roomUPrice);
-        }
 
-        List<Map<String, Object>> slctRoomPrice = pensionService.slctRoomPrice(roomType);
+        List<Map<String, Object>> slctRoomPrice = pensionService.slctRoomPrice(roomType, selectSpecific);
+        List<Map<String, Object>> slctPeriod = pensionService.slctPeriod();
 
-        model.addAttribute("roomPrice",slctRoomPrice);
+        if(roomType != null && selectSpecific != null){
+            return ResponseEntity.ok(slctRoomPrice.getFirst());
+        }else model.addAttribute("roomPrice",slctRoomPrice);
+
+        model.addAttribute("slctPeriod",slctPeriod);
+
         return "controlPrice";
     }
 
+    @RequestMapping("/savePrice")
+    public void savePrice (@RequestParam(value = "roomType", required = false) String roomType,
+                           @RequestParam(value = "roomPrice", required = false) String roomPrice,
+                           @RequestParam(value = "roomSPrice", required = false) String roomSPrice,
+                           @RequestParam(value = "roomUPrice", required = false) String roomUPrice,
+                           @RequestParam(value = "roomSfPrice", required = false) String roomSfPrice){
+        pensionService.savePrice(roomType, roomPrice, roomSPrice, roomUPrice, roomSfPrice);
+    }
 
     @RequestMapping("/checkId")
     public String checkId(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, RedirectAttributes redirectAttributes){
@@ -102,5 +112,16 @@ public class PensionControl {
         } else
             redirectAttributes.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
         return "redirect:/adminLogin";
+    }
+
+    @RequestMapping("/savePeriod")
+    public void  savePeriod(@RequestParam(value = "beachOpenDate", required = false) String beachOpenDate,
+                            @RequestParam(value = "beachCloseDate", required = false) String beachCloseDate,
+                            @RequestParam(value = "festivalOpenDate", required = false) String festivalOpenDate,
+                            @RequestParam(value = "festivalCloseDate", required = false) String festivalCloseDate,
+                            @RequestParam(value = "specialStart", required = false) String specialStart,
+                            @RequestParam(value = "specialEnd", required = false) String specialEnd){
+        pensionService.savePeriod(beachOpenDate, beachCloseDate, festivalOpenDate, festivalCloseDate, specialStart,specialEnd);
+
     }
 }
