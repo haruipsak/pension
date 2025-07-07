@@ -115,13 +115,15 @@ public class PensionControl {
     }
 
     @RequestMapping("/savePeriod")
-    public void  savePeriod(@RequestParam(value = "beachOpenDate", required = false) String beachOpenDate,
-                            @RequestParam(value = "beachCloseDate", required = false) String beachCloseDate,
-                            @RequestParam(value = "festivalOpenDate", required = false) String festivalOpenDate,
-                            @RequestParam(value = "festivalCloseDate", required = false) String festivalCloseDate,
-                            @RequestParam(value = "specialStart", required = false) String specialStart,
-                            @RequestParam(value = "specialEnd", required = false) String specialEnd){
-        pensionService.savePeriod(beachOpenDate, beachCloseDate, festivalOpenDate, festivalCloseDate, specialStart,specialEnd);
+    public void  savePeriod(@RequestParam(value = "periodNum", required = false) String periodNum,
+                            @RequestParam(value = "periodNm", required = false) String periodNm,
+                            @RequestParam(value = "periodStart", required = false) String periodStart,
+                            @RequestParam(value = "periodEnd", required = false) String periodEnd){
+        pensionService.savePeriod(periodNum, periodNm, periodStart, periodEnd);
+    }
 
+    @RequestMapping("/dltPeriod")
+    public void  savePeriod(@RequestParam(value = "periodNum") String periodNum){
+        pensionService.dltPeriod(periodNum);
     }
 }

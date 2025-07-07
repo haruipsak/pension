@@ -29,21 +29,49 @@ function savePrice(){
     }).then(data=>{window.location.reload()})
 }
 
-function savePeriod(){
-    const beachOpenDate = document.getElementById('beachOpenDate').value;
-    const beachCloseDate = document.getElementById('beachCloseDate').value;
-    const festivalOpenDate = document.getElementById('festivalOpenDate').value;
-    const festivalCloseDate = document.getElementById('festivalCloseDate').value;
-    const specialStart = document.getElementById('specialStart').value;
-    const specialEnd = document.getElementById('specialEnd').value;
+function changePeriod(periodNum, periodNm, periodStart, periodEnd){
+    if(periodNm === '해수욕장 개장'){
+        periodNm = 'beachOpen';
+    }else if(periodNm === '머드 축제'){
+        periodNm = 'mudFest';
+    }else if(periodNm === '특별 가격'){
+        periodNm = 'special' ;
+    }
 
-    const params = new URLSearchParams({
-        beachOpenDate: beachOpenDate,
-        beachCloseDate: beachCloseDate,
-        festivalOpenDate: festivalOpenDate,
-        festivalCloseDate: festivalCloseDate,
-        specialStart: specialStart,
-        specialEnd: specialEnd,
+    document.getElementById('slctNum').value = periodNum;
+    document.getElementById('slctType').value = periodNm;
+    document.getElementById('periodStart').value = periodStart
+    document.getElementById('periodEnd').value = periodEnd
+}
+
+function deletePeriod(periodNum){
+    let params = new URLSearchParams({
+        periodNum :periodNum,
+    });
+
+    // fetch 요청의 URL에 쿼리 파라미터를 추가합니다.
+    fetch('/dltPeriod?' + params, { // URL에 파라미터가 추가됩니다.
+        method: 'POST', // POST 요청 유지
+    }).then(data=>{window.location.reload()})
+}
+
+function savePeriod(){
+    let periodNum = document.getElementById('slctNum').value ? document.getElementById('slctNum').value : null;
+    let roomTypeSelect = document.getElementById('slctType').value;
+    let periodStart = document.getElementById('periodStart').value;
+    let periodEnd = document.getElementById('periodEnd').value;
+
+    if((periodStart || periodEnd) == null){
+        alert('기간을 설정해주세요')
+    }else if(slctType === ' ') {
+        alert('기간 이름을 선택해주세요')
+    }
+
+    let params = new URLSearchParams({
+        periodNum : periodNum,
+        periodStart :periodStart,
+        periodEnd: periodEnd,
+        periodNm : roomTypeSelect,
     });
 
     // fetch 요청의 URL에 쿼리 파라미터를 추가합니다.
@@ -61,98 +89,19 @@ document.addEventListener('DOMContentLoaded', function() {
         element.textContent = numericPrice.toLocaleString();
     });
 
-   flatpickr("#beachOpenDate", {
-        mode: "range",
-        enableTime: false,
-        dateFormat: "Y-m-d",
-        locale: "ko",
-        onClose: function(selectedDates, dateStr, instance) {
-            const beachCloseDateInput = document.getElementById('beachCloseDate');
-            if (selectedDates.length === 2) {
-                const startDate = instance.formatDate(selectedDates[0], "Y-m-d");
-                const endDate = instance.formatDate(selectedDates[1], "Y-m-d");
-                beachCloseDateInput.value = endDate;
-                if (beachCloseDateInput._flatpickr) {
-                    beachCloseDateInput._flatpickr.setDate(endDate, true);
-                }
-            } else {
-                beachCloseDateInput.value = '';
-                if (beachCloseDateInput._flatpickr) {
-                    beachCloseDateInput._flatpickr.clear();
-                }
-                console.log("개장 기간이 선택되지 않았습니다.");
-            }
-        },
-        onReady: function(selectedDates, dateStr, instance) {
-            const beachCloseDateInput = document.getElementById('beachCloseDate');
-            beachCloseDateInput._flatpickr = instance;
-            beachCloseDateInput.addEventListener('focus', () => instance.open());
-        }
+    function initRange(startSelector, endSelector) {
+        flatpickr(startSelector, {
+            locale: "ko",
+            dateFormat: "Y-m-d",
+            enableTime: false,
+            disableMobile: true,
+            plugins: [
+                new rangePlugin({ input: endSelector })
+            ]
+        });
+    }
+        initRange("#periodStart", "#periodEnd");
     });
-
-    // 2. 머드 축제 기간 설정 (시작일 - 종료일)
-    flatpickr("#festivalOpenDate", {
-        mode: "range",
-        enableTime: false,
-        dateFormat: "Y-m-d",
-        locale: "ko",
-        onClose: function(selectedDates, dateStr, instance) {
-            const festivalCloseDateInput = document.getElementById('festivalCloseDate');
-            if (selectedDates.length === 2) {
-                const startDate = instance.formatDate(selectedDates[0], "Y-m-d");
-                const endDate = instance.formatDate(selectedDates[1], "Y-m-d");
-
-                festivalCloseDateInput.value = endDate;
-                if (festivalCloseDateInput._flatpickr) {
-                    festivalCloseDateInput._flatpickr.setDate(endDate, true);
-                }
-            } else {
-                festivalCloseDateInput.value = '';
-                if (festivalCloseDateInput._flatpickr) {
-                    festivalCloseDateInput._flatpickr.clear();
-                }
-                console.log("축제 기간이 선택되지 않았습니다.");
-            }
-        },
-        onReady: function(selectedDates, dateStr, instance) {
-            const festivalCloseDateInput = document.getElementById('festivalCloseDate');
-            festivalCloseDateInput._flatpickr = instance;
-            festivalCloseDateInput.addEventListener('focus', () => instance.open());
-        }
-    });
-    // 3. 특별 축제 기간 설정 (시작일 - 종료일)
-    flatpickr("#specialStart", {
-        mode: "range",
-        enableTime: false,
-        dateFormat: "Y-m-d",
-        locale: "ko",
-        onClose: function(selectedDates, dateStr, instance) {
-            const specialEndInput = document.getElementById('specialEnd');
-
-            if (selectedDates.length === 2) {
-                const startDate = instance.formatDate(selectedDates[0], "Y-m-d");
-                const endDate = instance.formatDate(selectedDates[1], "Y-m-d");
-
-                specialEndInput.value = endDate;
-                if (specialEndInput._flatpickr) {
-                    specialEndInput._flatpickr.setDate(endDate, true);
-                }
-            } else {
-                // 선택이 불완전할 경우 specialEndInput 초기화
-                specialEndInput.value = '';
-                if (specialEndInput._flatpickr) {
-                    specialEndInput._flatpickr.clear();
-                }
-                console.log("특별 기간이 선택되지 않았습니다.");
-            }
-        },
-        onReady: function(selectedDates, dateStr, instance) {
-            const specialEndInput = document.getElementById('specialEnd');
-            specialEndInput._flatpickr = instance;
-            specialEndInput.addEventListener('focus', () => instance.open());
-        }
-    });
-});
 
 function selectType(){
     const roomTypeSelect = document.getElementById('roomTypeSelect');

@@ -36,23 +36,35 @@
     </select>
 
     <select id="slctPeriod" resultType="java.util.Map">
-        SELECT beachOpenDate,
-            beachCloseDate,
-            festivalOpenDate,
-            festivalCloseDate,
-            specialStart,
-            specialEnd
+        SELECT periodNum,
+               periodNm,
+               periodStart,
+               periodEnd
         FROM period
     </select>
 
     <update id="savePeriod">
-        UPDATE priod
-        SET
-            beachOpenDate = #{beachOpenDate},
-            beachCloseDate = #{beachCloseDate},
-            festivalOpenDate = #{festivalOpenDate},
-            festivalCloseDate = #{festivalCloseDate},
-            specialStart = #{specialStart},
-            specialEnd = #{specialEnd}
+        <choose>
+            <when test="periodNum != 'null'">
+                UPDATE period
+                SET
+                periodStart = #{periodStart},
+                periodEnd   = #{periodEnd}
+                WHERE periodNum = #{periodNum}
+            </when>
+
+            <otherwise>
+                INSERT INTO period
+                (periodNm, periodStart, periodEnd)
+                VALUES
+                (#{periodNm}, #{periodStart}, #{periodEnd})
+            </otherwise>
+        </choose>
     </update>
+
+    <delete id="dlctPeriod">
+        DELETE FROM period
+        WHERE periodNum = #{periodNum}
+    </delete>
+
 </mapper>

@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1cbcc6060a0aaa920d7ff019f63b4816"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -81,23 +82,47 @@
          <table class="table table-striped-columns" style="text-align: center">
             <thead>
             <tr>
-               <th>개장 기간</th>
-               <th>머드 축제 기간</th>
-               <th>특별 기간</th>
+               <th>기간 이름</th>
+               <th>기간</th>
+               <th></th>
+               <th></th>
+               <th></th>
                <th></th>
             </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td><input class ="inputPeriod" type="text" id="beachOpenDate" placeholder="개장일 선택"> - <input class ="inputPeriod" type="text" id="beachCloseDate" placeholder="폐장일 선택"> </td>
-                  <td><input class ="inputPeriod" type="text" id="festivalOpenDate" placeholder="축제 시작일 선택"> - <input class ="inputPeriod" type="text" id="festivalCloseDate" placeholder="축제 종료일 선택"></td>
-                  <td><input class ="inputPeriod" type="text" id="specialStart" placeholder="특별 시작일 선택"> - <input class ="inputPeriod" type="text" id="specialEnd" placeholder="특별 종료일 선택"></td>
-                  <td>
-                     <button type="button" class="btn btn-secondary" th:onclick="savePeriod()">저장</button>
-                  </td>
-               </tr>
+            <tr>
+               <td>
+                  <select id="slctType">
+                     <option value=" ">선택</option>
+                     <option value="beachOpen">해수욕장 개장</option>
+                     <option value="mudFest">머드 축제</option>
+                     <option value="special">특별 가격</option>
+                  </select>
+               </td>
+               <td hidden id="slctNum"></td>
+               <td><input class ="inputPeriod" type="text" id="periodStart" placeholder="시작일 선택"> - <input class ="inputPeriod" type="text" id="periodEnd" placeholder="종료일 선택"></td>
+               <td>
+                  <button type="button" class="btn btn-secondary" th:onclick="savePeriod()">저장</button>
+               </td>
+            </tr>
+            <tr th:each="period : ${slctPeriod}">
+               <td id="periodNum" th:text="${period.periodNum}" hidden> </td>
+               <td th:text="${period.periodNm}"></td>
+               <td th:text="|${#dates.format(period.periodStart,'yyyy-MM-dd')} - ${#dates.format(period.periodEnd,'yyyy-MM-dd')}|"></td>
+               <td th:attr="onclick=|
+                 changePeriod(
+                   ${period.periodNum},
+                   '${period.periodNm}',
+                   '${#dates.format(period.periodStart,'yyyy-MM-dd')}',
+                   '${#dates.format(period.periodEnd,'yyyy-MM-dd')}'
+                 )
+               |">수정</td>
+               <td th:onclick="|deletePeriod(${period.periodNum})|">삭제</td>
+            </tr>
             </tbody>
          </table>
+
         <table class="table table-striped-columns" style="text-align: center">
            <thead>
             <tr>

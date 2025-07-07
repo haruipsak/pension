@@ -49,7 +49,18 @@ public class pensionService {
         return resultList;
     }
 
-    public void savePeriod(String beachOpenDate, String beachCloseDate, String festivalOpenDate, String festivalCloseDate, String specialStart, String specialEnd){
-        pensionMapper.savePeriod(beachOpenDate, beachCloseDate, festivalOpenDate, festivalCloseDate, specialStart,specialEnd);
+    public void savePeriod(String periodNum, String periodNm, String periodStart, String periodEnd) {
+        if(periodNm.equals("beachOpen")){
+          periodNm = "해수욕장 개장";
+        }else if(periodNm.equals("mudFest")){
+            periodNm = "머드 축제";
+        }else {
+            periodNm = "특별 가격";
+        }
+        pensionMapper.savePeriod(periodNum, periodNm, periodStart, periodEnd);
+    }
+
+    public void dltPeriod(String periodNum) {
+        pensionMapper.dlctPeriod(periodNum);
     }
 }
