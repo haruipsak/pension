@@ -1,6 +1,9 @@
 package com.pension.vo;
 
-public class pensionVO {
+import lombok.ToString;
+
+@ToString
+public class adminVo {
     private String userId;
     private String userPw;
 }
