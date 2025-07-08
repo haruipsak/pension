@@ -1,9 +1,13 @@
 function savePrice(){
     const selectedRoomType = document.getElementById('roomTypeSelect').value;
-    const roomPrice= document.getElementById('roomPrice').value;
-    const roomSPrice= document.getElementById('roomSPrice').value;
-    const roomUPrice= document.getElementById('roomUPrice').value;
-    const roomSfPrice= document.getElementById('roomSfPrice').value;
+    const roomWkPrice= document.getElementById('roomWkPrice').value;
+    const roomWkndPrice= document.getElementById('roomWkndPrice').value;
+    const roomSWkPrice= document.getElementById('roomSWkPrice').value;
+    const roomSWkndPrice= document.getElementById('roomSWkndPrice').value;
+    const roomUWkPrice= document.getElementById('roomUWkPrice').value;
+    const roomUWkndPrice= document.getElementById('roomUWkndPrice').value;
+    const roomSfWkPrice= document.getElementById('roomSfWkPrice').value;
+    const roomSfWkndPrice= document.getElementById('roomSfWkndPrice').value;
 
     // 유효성 검사 (필요시)
     if (!selectedRoomType || selectedRoomType.includes(' ')) {
@@ -11,16 +15,23 @@ function savePrice(){
         return;
     }
 
-    if((roomPrice.length || roomPrice.length || roomUPrice.length ) < 5){
+    if((roomWkPrice.length || roomWkndPrice.length ||
+        roomSWkPrice.length || roomSWkndPrice.length ||
+        roomUWkPrice.length || roomUWkndPrice.length
+       ) < 5){
         alert('설정 가격을 확인하세요')
     }
 
     const params = new URLSearchParams({
         roomType: selectedRoomType,
-        roomPrice: roomPrice,
-        roomSPrice: roomSPrice,
-        roomUPrice: roomUPrice,
-        roomSfPrice: roomSfPrice,
+        roomWkPrice : roomWkPrice,
+        roomWkndPrice : roomWkndPrice,
+        roomSWkPrice : roomSWkPrice,
+        roomSWkndPrice : roomSWkndPrice,
+        roomUWkPrice : roomUWkPrice,
+        roomUWkndPrice : roomUWkndPrice,
+        roomSfWkPrice : roomSfWkPrice,
+        roomSfWkndPrice : roomSfWkndPrice
     });
 
     // fetch 요청의 URL에 쿼리 파라미터를 추가합니다.
@@ -108,18 +119,22 @@ function selectType(){
     if (roomTypeSelect) {
         roomTypeSelect.addEventListener('change', function() {
             const selectedType = this.value; // 선택된 방 유형 (예: "coupleRoom")
-            const selectSpecific = 'Y';
 
             if (selectedType && selectedType.trim() !== '' && selectedType.trim() !== ' ') {
-                fetch(`/controlPrice?roomType=${selectedType}&selectSpecific=${selectSpecific}`, {
+                fetch(`/controlPrice?roomType=${selectedType}`, {
                     method: 'GET',
                     headers: { 'Accept': 'application/json' }
                 }).then(response => {
                     return response.json();
                 }).then(roomData => {
-                    document.getElementById('roomPrice').value = roomData.roomPrice ? roomData.roomPrice: '';
-                    document.getElementById('roomSPrice').value = roomData.roomSPrice ? roomData.roomSPrice : '';
-                    document.getElementById('roomUPrice').value = roomData.roomUPrice ? roomData.roomUPrice : '';
+                    document.getElementById('roomWkPrice').value = roomData.roomWkPrice ? roomData.roomWkPrice: 0;
+                    document.getElementById('roomWkndPrice').value = roomData.roomWkndPrice ? roomData.roomWkndPrice : 0;
+                    document.getElementById('roomSWkPrice').value = roomData.roomSWkPrice ? roomData.roomSWkPrice : 0;
+                    document.getElementById('roomSWkndPrice').value = roomData.roomSWkndPrice ? roomData.roomSWkndPrice: 0;
+                    document.getElementById('roomUWkPrice').value = roomData.roomUWkPrice ? roomData.roomUWkPrice : 0;
+                    document.getElementById('roomUWkndPrice').value = roomData.roomUWkndPrice ? roomData.roomUWkndPrice : 0;
+                    document.getElementById('roomSfWkPrice').value = roomData.roomSfWkPrice ? roomData.roomSfWkPrice : 0;
+                    document.getElementById('roomSfWkndPrice').value = roomData.roomSfWkndPrice ? roomData.roomSfWkndPrice : 0;
                 }).catch(error => {
                     alert('가격을 불러오는 데 실패했습니다.')
                 });

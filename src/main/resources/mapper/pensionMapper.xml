@@ -12,10 +12,14 @@
         UPDATE roomprice
             SET
             roomType = #{roomType},
-            roomP = #{roomPrice},
-            roomSp = #{roomSPrice},
-            roomUp = #{roomUPrice},
-            roomSfPrice = #{roomSfPrice}
+            roomWkPrice = #{roomWkPrice},
+            roomWkndPrice = #{roomWkndPrice},
+            roomSWkPrice = #{roomSWkPrice},
+            roomSWkndPrice = #{roomSWkndPrice},
+            roomUWkPrice = #{roomUWkPrice},
+            roomUWkndPrice = #{roomUWkndPrice},
+            roomSfWkPrice = #{roomSfWkPrice},
+            roomSfWkndPrice = #{roomSfWkndPrice}
         WHERE roomType = #{roomType}
     </update>
     
@@ -23,14 +27,18 @@
         SELECT A.roomType AS "roomType",
             A.roomId AS "roomId",
             A.roomNm AS "roomNm",
-            COALESCE(B.roomP, '') AS "roomPrice",
-            COALESCE(B.roomSp, '') AS "roomSPrice",
-            COALESCE(B.roomUp, '') AS "roomUPrice",
-            COALESCE(B.roomSfPrice, '') AS "roomSfPrice"
+            COALESCE(B.roomWkPrice, '') AS "roomWkPrice",
+            COALESCE(B.roomWkndPrice, '') AS "roomWkndPrice",
+            COALESCE(B.roomSWkPrice, '') AS "roomSWkPrice",
+            COALESCE(B.roomSWkndPrice, '') AS "roomSWkndPrice",
+            COALESCE(B.roomUWkPrice, '') AS "roomUWkPrice",
+            COALESCE(B.roomUWkndPrice, '') AS "roomUWkndPrice",
+            COALESCE(B.roomSfWkPrice, '') AS "roomSfWkPrice",
+            COALESCE(B.roomSfWkndPrice, '') AS "roomSfWkndPrice"
         FROM room A
         LEFT JOIN roomprice B
             ON A.roomType = B.roomType
-        <if test="roomType != null and selectSpecific != null">
+        <if test="roomType != null">
            WHERE A.roomType = #{roomType}
         </if>
     </select>

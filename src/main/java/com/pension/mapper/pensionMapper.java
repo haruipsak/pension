@@ -10,8 +10,9 @@ import java.util.Map;
 public interface pensionMapper {
     ArrayList<String> selectAdmin(String userId, String userPw);
     List<Map<String, Object>> slctRoomPrice(String roomType, String selectSpecific);
-    void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice, String roomSfPrice);
     List<Map<String, Object>> slctPeriod();
     void savePeriod(String periodNum, String periodNm, String periodStart, String periodEnd);
     void dlctPeriod(String periodNum);
+    void savePrice(String roomType, String roomWkPrice, String roomWkndPrice, String roomSWkPrice, String roomSWkndPrice,
+                   String roomUWkPrice, String roomUWkndPrice, String roomSfWkPrice, String roomSfWkndPrice);
 }

@@ -40,10 +40,6 @@ public class pensionService {
         return resultList;
     }
 
-    public void savePrice(String roomType, String roomPrice, String roomSPrice, String roomUPrice, String roomSfPrice){
-        pensionMapper.savePrice(roomType, roomPrice, roomSPrice, roomUPrice, roomSfPrice);
-    }
-
     public List<Map<String, Object>> slctPeriod() {
         List<Map<String, Object>> resultList = pensionMapper.slctPeriod();
         return resultList;
@@ -62,5 +58,10 @@ public class pensionService {
 
     public void dltPeriod(String periodNum) {
         pensionMapper.dlctPeriod(periodNum);
+    }
+
+    public void savePrice(String roomType, String roomWkPrice, String roomWkndPrice, String roomSWkPrice, String roomSWkndPrice, String roomUWkPrice, String roomUWkndPrice, String roomSfWkPrice, String roomSfWkndPrice) {
+        pensionMapper.savePrice(roomType, roomWkPrice, roomWkndPrice, roomSWkPrice, roomSWkndPrice, roomUWkPrice,
+                roomUWkndPrice, roomSfWkPrice, roomSfWkndPrice);
     }
 }

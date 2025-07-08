@@ -83,7 +83,7 @@ public class PensionControl {
         List<Map<String, Object>> slctRoomPrice = pensionService.slctRoomPrice(roomType, selectSpecific);
         List<Map<String, Object>> slctPeriod = pensionService.slctPeriod();
 
-        if(roomType != null && selectSpecific != null){
+        if(roomType != null){
             return ResponseEntity.ok(slctRoomPrice.getFirst());
         }else model.addAttribute("roomPrice",slctRoomPrice);
 
@@ -94,11 +94,16 @@ public class PensionControl {
 
     @RequestMapping("/savePrice")
     public void savePrice (@RequestParam(value = "roomType", required = false) String roomType,
-                           @RequestParam(value = "roomPrice", required = false) String roomPrice,
-                           @RequestParam(value = "roomSPrice", required = false) String roomSPrice,
-                           @RequestParam(value = "roomUPrice", required = false) String roomUPrice,
-                           @RequestParam(value = "roomSfPrice", required = false) String roomSfPrice){
-        pensionService.savePrice(roomType, roomPrice, roomSPrice, roomUPrice, roomSfPrice);
+                           @RequestParam(value = "roomWkPrice", required = false) String roomWkPrice,
+                           @RequestParam(value = "roomWkndPrice", required = false) String roomWkndPrice,
+                           @RequestParam(value = "roomSWkPrice", required = false) String roomSWkPrice,
+                           @RequestParam(value = "roomSWkndPrice", required = false) String roomSWkndPrice,
+                           @RequestParam(value = "roomUWkPrice", required = false) String roomUWkPrice,
+                           @RequestParam(value = "roomUWkndPrice", required = false) String roomUWkndPrice,
+                           @RequestParam(value = "roomSfWkPrice", required = false) String roomSfWkPrice,
+                           @RequestParam(value = "roomSfWkndPrice", required = false) String roomSfWkndPrice ){
+        pensionService.savePrice(roomType, roomWkPrice, roomWkndPrice, roomSWkPrice, roomSWkndPrice, roomUWkPrice,
+                roomUWkndPrice, roomSfWkPrice, roomSfWkndPrice);
     }
 
     @RequestMapping("/checkId")
