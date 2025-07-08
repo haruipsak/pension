@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pension.mapper.priceMapper">
+    <update id="savePrice">
+        UPDATE roomprice
+            SET
+            roomType = #{roomType},
+            roomWkPrice = #{roomWkPrice},
+            roomWkndPrice = #{roomWkndPrice},
+            roomSWkPrice = #{roomSWkPrice},
+            roomSWkndPrice = #{roomSWkndPrice},
+            roomUWkPrice = #{roomUWkPrice},
+            roomUWkndPrice = #{roomUWkndPrice},
+            roomSfWkPrice = #{roomSfWkPrice},
+            roomSfWkndPrice = #{roomSfWkndPrice}
+        WHERE roomType = #{roomType}
+    </update>
+    
+    <select id="slctRoomPrice" resultType="java.util.Map">
+        SELECT A.roomType AS "roomType",
+            A.roomId AS "roomId",
+            A.roomNm AS "roomNm",
+            COALESCE(B.roomWkPrice, '') AS "roomWkPrice",
+            COALESCE(B.roomWkndPrice, '') AS "roomWkndPrice",
+            COALESCE(B.roomSWkPrice, '') AS "roomSWkPrice",
+            COALESCE(B.roomSWkndPrice, '') AS "roomSWkndPrice",
+            COALESCE(B.roomUWkPrice, '') AS "roomUWkPrice",
+            COALESCE(B.roomUWkndPrice, '') AS "roomUWkndPrice",
+            COALESCE(B.roomSfWkPrice, '') AS "roomSfWkPrice",
+            COALESCE(B.roomSfWkndPrice, '') AS "roomSfWkndPrice"
+        FROM room A
+        LEFT JOIN roomprice B
+            ON A.roomType = B.roomType
+        <if test="roomType != null">
+           WHERE A.roomType = #{roomType}
+        </if>
+    </select>
+
+    <select id="slctPeriod" resultType="java.util.Map">
+        SELECT periodNum,
+               periodNm,
+               periodStart,
+               periodEnd
+        FROM period
+    </select>
+
+    <update id="savePeriod">
+        <choose>
+            <when test="periodNum != 'null'">
+                UPDATE period
+                SET
+                periodStart = #{periodStart},
+                periodEnd   = #{periodEnd}
+                WHERE periodNum = #{periodNum}
+            </when>
+
+            <otherwise>
+                INSERT INTO period
+                (periodNm, periodStart, periodEnd)
+                VALUES
+                (#{periodNm}, #{periodStart}, #{periodEnd})
+            </otherwise>
+        </choose>
+    </update>
+
+    <delete id="dlctPeriod">
+        DELETE FROM period
+        WHERE periodNum = #{periodNum}
+    </delete>
+
+</mapper>
