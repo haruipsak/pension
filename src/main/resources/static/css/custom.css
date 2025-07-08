@@ -62,7 +62,7 @@
     border-left: 10px solid #0f69c6;
 }
 /* 기본 스타일 (데스크톱에서는 영향 없음) */
-.select, .inputPeriod {
+.select {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
