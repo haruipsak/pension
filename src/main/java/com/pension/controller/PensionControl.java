@@ -1,5 +1,6 @@
 package com.pension.controller;
 
+import org.springframework.ui.Model;
 import com.pension.service.pensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PensionControl {
@@ -66,7 +70,9 @@ public class PensionControl {
     }
 
     @RequestMapping("/controlRoom")
-    public String controlRoom(){
+    public String controlRoom(Model model){
+        List<Map<String, Object>> roomCnt = pensionService.room();
+        model.addAttribute("roomCnt",roomCnt);
         return "controlRoom";
     }
 

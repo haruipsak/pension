@@ -7,4 +7,13 @@
         WHERE USERID = #{userId}
             AND USERPW = #{userPw}
     </select>
+
+    <select id="room" resultType="java.util.Map">
+        SELECT roomType,
+               roomNm,
+               roomCnt,
+               roomFull
+        FROM room
+    </select>
+
 </mapper>
