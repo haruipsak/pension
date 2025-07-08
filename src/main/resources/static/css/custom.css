@@ -61,7 +61,202 @@
     border-right: 10px solid transparent;
     border-left: 10px solid #0f69c6;
 }
+/* 기본 스타일 (데스크톱에서는 영향 없음) */
+.select, .inputPeriod {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* 글씨 크기 일관성 유지 */
+}
 
-.inputPeriod {
-    width: 40%;
+.inputPrice{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* 글씨 크기 일관성 유지 */
+}
+
+/* 모바일 화면에만 적용될 스타일 */
+@media screen and (max-width: 768px) {
+    /* select 요소 너비 100% 적용 및 마진 조정 */
+    .select {
+        width: calc(100% - 20px); /* data-label 공간 제외 */
+        box-sizing: border-box;
+        margin-bottom: 5px;
+        margin-left: 0; /* 기존 마진 제거 */
+    }
+
+    /* inputPrice 요소 너비 100% 적용 및 마진 조정 */
+    .inputPrice {
+        width: calc(100% - 20px); /* data-label 공간 제외 */
+        box-sizing: border-box;
+        margin-bottom: 5px;
+        margin-left: 0;
+    }
+
+    /* 기간 입력 필드 조정 - 한 줄에 하나씩 */
+    .inputPeriod {
+        width: 100%; /* 부모 td 내에서 100% 사용 */
+        box-sizing: border-box;
+        margin-bottom: 5px; /* 각 input 필드 아래 여백 */
+        display: block; /* 블록 요소로 만들어 한 줄에 하나씩 */
+    }
+    /* 시작일과 종료일 input 사이의 하이픈 (-)이 겹치지 않도록 처리 */
+    .period-separator {
+        display: block; /* 하이픈도 별도의 줄로 */
+        text-align: center;
+        margin: 5px 0; /* 하이픈 위아래 여백 */
+        color: #666; /* 하이픈 색상 조정 */
+        font-weight: bold;
+    }
+
+    /* 기간 입력 필드가 들어있는 td는 flexbox로 내부 요소 정렬 */
+    td[data-label="기간"] {
+        display: flex;
+        flex-direction: column; /* 세로로 쌓이도록 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        padding-right: 10px; /* 우측 패딩 추가 */
+        padding-left: 45%; /* data-label 공간 확보 (45%로 유지) */
+        min-height: unset; /* 최소 높이 제한 해제 (내용에 따라 유동적으로) */
+        padding-top: 10px; /* 상단 패딩 추가 */
+        padding-bottom: 10px; /* 하단 패딩 추가 */
+    }
+    td[data-label="기간"]::before { /* 기간 라벨의 위치 조정 */
+        top: 10px; /* 상단에서 시작 (input 위치에 맞춰) */
+        transform: none; /* translateY 제거 */
+    }
+
+
+    /* data-label이 있는 td는 기본적으로 오른쪽 정렬 (텍스트 데이터) */
+    /* 단, input/select가 있는 td, 특정 라벨이 있는 td는 제외 */
+    table td:not([data-label="기간"]):not([data-label="기간 이름"]):not([data-label="방 유형"]):not([data-label="저장"]):not([data-label="수정"]):not([data-label="삭제"]) {
+        text-align: right;
+    }
+
+
+    /* 버튼 스타일 조정 */
+    .btn {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 16px; /* 버튼 글씨 크기 조정 */
+    }
+
+    /* ---------- 테이블 반응형 처리 (가로 스크롤 없음) ---------- */
+
+    table {
+        border-collapse: collapse;
+        width: 100%; /* 테이블 전체는 100% */
+        margin-bottom: 20px;
+        display: block; /* 테이블 자체를 블록으로 */
+    }
+
+    table thead { /* 헤더 숨기기 */
+        display: none;
+    }
+
+    table tbody, table tr { /* tbody와 tr을 블록으로 */
+        display: block;
+        width: 100%;
+    }
+
+    table tr {
+        border: 1px solid #ccc; /* 각 행을 구분하는 테두리 */
+        margin-bottom: 15px; /* 각 행 사이에 여백 */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 카드 효과 */
+        border-radius: 8px; /* 둥근 모서리 */
+    }
+
+    table td {
+        display: block; /* 각 셀을 블록으로 만들어 세로로 쌓이게 함 */
+        border: none; /* 기본 td 테두리 제거 */
+        border-bottom: 1px solid #eee; /* 셀 사이에 구분선 */
+        position: relative;
+        padding: 10px 10px 10px 48%; /* data-label을 위한 공간 확보: 48%로 조정 */
+        min-height: 40px; /* 최소 높이로 내용이 너무 작아지지 않게 */
+        box-sizing: border-box;
+        word-wrap: break-word; /* 긴 텍스트 강제 줄바꿈 */
+        overflow: hidden; /* 내용이 넘치면 숨김 */
+        text-overflow: ellipsis; /* 넘치는 텍스트 ... 처리 (필요시) */
+    }
+    /* 마지막 셀에는 하단 테두리 없음 */
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    /* data-label (숨겨진 th 내용) 표시 */
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px; /* 왼쪽에서부터 10px */
+        width: 35%; /* label 공간: 35%로 유지 */
+        padding-right: 5px;
+        white-space: normal; /* 라벨은 필요하면 줄바꿈 허용 */
+        text-align: left; /* 라벨 왼쪽 정렬 */
+        font-weight: bold;
+        color: #555;
+        top: 50%; /* 수직 가운데 정렬 */
+        transform: translateY(-50%); /* 정확한 수직 가운데 정렬 */
+        line-height: 1.2; /* 라벨 줄간격 */
+    }
+
+    /* 입력 필드나 select가 들어있는 td는 라벨을 안쪽으로 밀어 넣지 않도록 조정 */
+    td[data-label="기간 이름"],
+    td[data-label="방 유형"] {
+        text-align: left; /* 이 td 내부의 select 요소는 왼쪽 정렬 */
+        padding-left: 48%; /* data-label 공간과 일치하게 패딩 조정 */
+    }
+    /* data-label이 있는 input/select td의 before는 다시 띄워줘야 함 */
+    td[data-label="기간 이름"]::before,
+    td[data-label="방 유형"]::before {
+        left: 10px;
+        width: 35%;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap; /* 다시 줄바꿈 안함 */
+    }
+    /* input/select 요소 자체의 너비를 조정 (data-label 공간 고려) */
+    td[data-label="기간 이름"] select,
+    td[data-label="방 유형"] select {
+        width: calc(100% - 10px); /* 오른쪽 패딩 제외한 너비 */
+        /* margin-left는 필요 없음, padding-left로 공간 확보했기 때문 */
+    }
+
+    /* 가격 입력 필드 TD에 대한 패딩 조정 */
+    td[data-label*="가격"] {
+        padding-left: 48%; /* 라벨과 입력 필드 간 간격 확보 */
+    }
+
+
+    /* 버튼이 있는 td는 data-label 숨김 및 가운데 정렬 */
+    table td[data-label="저장"],
+    table td[data-label="수정"],
+    table td[data-label="삭제"] {
+        text-align: center;
+        padding-left: 10px; /* data-label 공간 필요 없음 */
+        padding-right: 10px;
+    }
+    table td[data-label="저장"]:before,
+    table td[data-label="수정"]:before,
+    table td[data-label="삭제"]:before {
+        content: none; /* 버튼 td에는 라벨을 표시하지 않음 */
+    }
+
+    /* 첫 번째 테이블의 특정 빈 td (저장 버튼 뒤의 빈 셀) */
+    table:nth-of-type(1) tbody tr:first-child td:nth-last-child(2), /* 수정 버튼 칸에 해당하는 빈 td */
+    table:nth-of-type(1) tbody tr:first-child td:last-child { /* 삭제 버튼 칸에 해당하는 빈 td */
+        display: none; /* 이 두 개의 빈 셀은 숨김 */
+    }
+
+    /* 기존 데이터가 나오는 테이블의 셀 정렬 */
+    table:nth-of-type(3) td[data-label="방 유형"],
+    table:nth-of-type(3) td[data-label="방 이름"] {
+        text-align: left; /* 방 유형과 방 이름은 좌측 정렬 */
+        padding-left: 48%; /* data-label 공간 확보 */
+    }
+    table:nth-of-type(3) td:not([data-label="방 유형"]):not([data-label="방 이름"]):not([data-label="저장"]):not([data-label="수정"]):not([data-label="삭제"]) {
+        text-align: right; /* 나머지 숫자 데이터는 우측 정렬 */
+    }
 }
