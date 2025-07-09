@@ -100,10 +100,11 @@
                      <option value="duplexOne">복층원룸</option>
                   </select>
                </td>
+               <td hidden><input id="roomType"></td>
                <td data-label="기본 인원"><input class="inputPrice" type="text" id='roomCnt' ></input></td>
                <td data-label="최대 인원"><input class="inputPrice" type="text" id='roomFull'></input></td>
                <td data-label="저장">
-                  <button type="button" class="btn btn-secondary" th:onclick="savePrice()">저장</button>
+                  <button type="button" class="btn btn-secondary" th:onclick="saveHead()">저장</button>
                </td>
             </tr>
             </tbody>
@@ -119,7 +120,13 @@
             </thead>
             <tbody>
             <tr th:each="count : ${roomCnt}">
-               <td th:text="${count.roomType}" data-label="방 유형"></td>
+               <td data-label="방 유형">
+                  <div th:if = "${count.roomType == 'coupleRoom'}" >커플룸</div>
+                  <div th:if = "${count.roomType == 'familyTwo'}" >투룸</div>
+                  <div th:if = "${count.roomType == 'familyOne'}" >원룸</div>
+                  <div th:if = "${count.roomType == 'duplexTwo'}" >복층 투룸</div>
+                  <div th:if = "${count.roomType == 'duplexOne'}" >복층 원룸</div>
+               </td>
                <td th:text="${count.roomNm}" data-label="방 이름"></td>
                <td class="price-value" th:text="${count.roomCnt}" data-label="기본 인원"></td>
                <td class="price-value" th:text="${count.roomFull}" data-label="최대 인원"></td>
@@ -172,9 +179,7 @@
       <script src="js/custom.js"></script>
      <!-- 카카오맵 -->
       <script src="js/map.js"></script>
-     <!-- 떠나요-->
-      <script src="js/booking.js"></script>
-      <!-- 달력 -->
-      <script src="js/reservation.js"></script>
+      <!--인원 관리-->
+      <script src="js/headCnt.js"><</script>
    </body>
 </html>

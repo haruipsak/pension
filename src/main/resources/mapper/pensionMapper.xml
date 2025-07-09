@@ -14,6 +14,18 @@
                roomCnt,
                roomFull
         FROM room
+        <if test="roomType != null">
+          WHERE roomType = #{roomType}
+        </if>
     </select>
+
+    <update id="saveHead">
+        UPDATE room
+        SET
+            roomType = #{roomType},
+            roomCnt = #{roomCnt},
+            roomFull = #{roomFull}
+        WHERE roomType = #{roomType}
+    </update>
 
 </mapper>

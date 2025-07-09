@@ -10,5 +10,7 @@ import java.util.Map;
 public interface pensionMapper {
     ArrayList<String> selectAdmin(String userId, String userPw);
 
-    List<Map<String, Object>> room();
+    List<Map<String, Object>> room(String roomType);
+
+    void saveHead(Map<String, Object> params);
 }

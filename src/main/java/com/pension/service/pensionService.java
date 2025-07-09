@@ -21,22 +21,12 @@ public class pensionService {
         }  else return false;
     }
 
-    public List<Map<String, Object>> room() {
-        List<Map<String, Object>> room = pensionMapper.room();
-        room.forEach(a->{
-            String roomType = a.get("roomType").toString();
-            if(roomType.contains("coupleRoom")){
-                a.put("roomType", "커플룸");
-            }else if(roomType.contains("familyTwo")){
-                a.put("roomType", "투룸");
-            }else if(roomType.contains("familyOne")){
-                a.put("roomType", "원룸");
-            }else if(roomType.contains("duplexTwo")){
-                a.put("roomType", "복층투룸");
-            }else if(roomType.contains("duplexOne")){
-                a.put("roomType", "복층원룸");
-            }
-        });
-        return room;
+    public List<Map<String, Object>> room(String roomType) {
+        List<Map<String, Object>> room1= pensionMapper.room(roomType);
+        return room1;
+    }
+
+    public void saveHead(Map<String, Object> params) {
+        pensionMapper.saveHead(params);
     }
 }

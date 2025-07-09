@@ -12,6 +12,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px; /* 글씨 크기 일관성 유지 */
+    width: 100%;
 }
 
 .inputPeriod {

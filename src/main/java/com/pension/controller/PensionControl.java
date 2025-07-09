@@ -1,5 +1,6 @@
 package com.pension.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import com.pension.service.pensionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +71,18 @@ public class PensionControl {
     }
 
     @RequestMapping("/controlRoom")
-    public String controlRoom(Model model){
-        List<Map<String, Object>> roomCnt = pensionService.room();
-        model.addAttribute("roomCnt",roomCnt);
+    public Object controlRoom(@RequestParam(value = "roomType", required = false) String roomType, Model model){
+        List<Map<String, Object>> roomCnt = pensionService.room(roomType);
+        if(roomType != null){
+           return ResponseEntity.ok(roomCnt.getFirst());
+        } else model.addAttribute("roomCnt",roomCnt);
+
         return "controlRoom";
+    }
+
+    @RequestMapping("/saveHead")
+    public void saveHead(@RequestParam Map<String, Object> params){
+        pensionService.saveHead(params);
     }
 
     @RequestMapping("/checkId")

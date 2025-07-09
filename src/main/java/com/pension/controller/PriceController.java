@@ -47,17 +47,8 @@ public class PriceController {
     }
 
     @RequestMapping("/savePrice")
-    public void savePrice (@RequestParam(value = "roomType", required = false) String roomType,
-                           @RequestParam(value = "roomWkPrice", required = false) String roomWkPrice,
-                           @RequestParam(value = "roomWkndPrice", required = false) String roomWkndPrice,
-                           @RequestParam(value = "roomSWkPrice", required = false) String roomSWkPrice,
-                           @RequestParam(value = "roomSWkndPrice", required = false) String roomSWkndPrice,
-                           @RequestParam(value = "roomUWkPrice", required = false) String roomUWkPrice,
-                           @RequestParam(value = "roomUWkndPrice", required = false) String roomUWkndPrice,
-                           @RequestParam(value = "roomSfWkPrice", required = false) String roomSfWkPrice,
-                           @RequestParam(value = "roomSfWkndPrice", required = false) String roomSfWkndPrice ){
-        priceService.savePrice(roomType, roomWkPrice, roomWkndPrice, roomSWkPrice, roomSWkndPrice, roomUWkPrice,
-                roomUWkndPrice, roomSfWkPrice, roomSfWkndPrice);
+    public void savePrice (@RequestParam Map<String, String> params){
+        priceService.savePrice(params);
     }
 
     @RequestMapping("/savePeriod")
