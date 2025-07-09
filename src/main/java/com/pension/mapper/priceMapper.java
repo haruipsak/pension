@@ -11,6 +11,5 @@ public interface priceMapper {
     List<Map<String, Object>> slctPeriod();
     void savePeriod(String periodNum, String periodNm, String periodStart, String periodEnd);
     void dlctPeriod(String periodNum);
-    void savePrice(String roomType, String roomWkPrice, String roomWkndPrice, String roomSWkPrice, String roomSWkndPrice,
-                   String roomUWkPrice, String roomUWkndPrice, String roomSfWkPrice, String roomSfWkndPrice);
+    void savePrice(Map<String, String> params);
 }

@@ -1,5 +1,7 @@
 package com.pension.controller;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import com.pension.service.pensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PensionControl {
@@ -66,8 +71,18 @@ public class PensionControl {
     }
 
     @RequestMapping("/controlRoom")
-    public String controlRoom(){
+    public Object controlRoom(@RequestParam(value = "roomType", required = false) String roomType, Model model){
+        List<Map<String, Object>> roomCnt = pensionService.room(roomType);
+        if(roomType != null){
+           return ResponseEntity.ok(roomCnt.getFirst());
+        } else model.addAttribute("roomCnt",roomCnt);
+
         return "controlRoom";
+    }
+
+    @RequestMapping("/saveHead")
+    public void saveHead(@RequestParam Map<String, Object> params){
+        pensionService.saveHead(params);
     }
 
     @RequestMapping("/checkId")

@@ -51,8 +51,6 @@ public class priceService {
         priceMapper.dlctPeriod(periodNum);
     }
 
-    public void savePrice(String roomType, String roomWkPrice, String roomWkndPrice, String roomSWkPrice, String roomSWkndPrice, String roomUWkPrice, String roomUWkndPrice, String roomSfWkPrice, String roomSfWkndPrice) {
-        priceMapper.savePrice(roomType, roomWkPrice, roomWkndPrice, roomSWkPrice, roomSWkndPrice, roomUWkPrice,
-                roomUWkndPrice, roomSfWkPrice, roomSfWkndPrice);
+    public void savePrice(Map<String, String> params) {
     }
 }

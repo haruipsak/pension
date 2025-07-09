@@ -7,4 +7,25 @@
         WHERE USERID = #{userId}
             AND USERPW = #{userPw}
     </select>
+
+    <select id="room" resultType="java.util.Map">
+        SELECT roomType,
+               roomNm,
+               roomCnt,
+               roomFull
+        FROM room
+        <if test="roomType != null">
+          WHERE roomType = #{roomType}
+        </if>
+    </select>
+
+    <update id="saveHead">
+        UPDATE room
+        SET
+            roomType = #{roomType},
+            roomCnt = #{roomCnt},
+            roomFull = #{roomFull}
+        WHERE roomType = #{roomType}
+    </update>
+
 </mapper>
