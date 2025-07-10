@@ -26,7 +26,7 @@
       <link rel="StyleSheet" href='https://www.ddnayo.com/api/script.css' type="text/css" />
       <link rel="stylesheet" href="/resources/20250618200719/bundles/web.ReservationManagementEntry.bundle.css"
             type="text/css">
-
+      <link rel="stylesheet" href="css/calendar-reservation.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
@@ -42,96 +42,50 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a th:href="@{/}"><img src="img/logo.png" alt="#" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
-                                aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item active">
-                                 <a class="nav-link" th:href="@{/controlBooking}">객실 상황</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" th:href="@{/controlRoom}">객실 정보</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" th:href="@{/controlPrice}">요금 설정</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
+      <!-- 달력 날짜 선택 UI 추가 -->
+      <div class="jss85 jss83 mt5 jss84">
+        <div class="jss86">
+          <h2 class="MuiTypography-root MuiTypography-h3">달력에서 확인할 날짜를 선택해주세요.</h2>
+        </div>
+        <div class="jss80">
+          <div class="jss87 jss81 jss111">
+            <div class="jss104">
+              <div class="MuiGrid-root jss88 MuiGrid-container MuiGrid-align-items-xs-center">
+                <span class="jss89 jss105" id="prevMonthBtn">
+                  <svg class="MuiSvgIcon-root jss99" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"></path></svg>
+                </span>
+                <span class="jss90" id="calendarTitle">2025년 07월</span>
+                <span class="jss89 jss107" id="nextMonthBtn">
+                  <svg class="MuiSvgIcon-root jss99" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"></path></svg>
+                </span>
+              </div>
             </div>
-         </div>
-      </header>
-      <!-- end header inner -->
-      <!-- end header -->
-
-      <!--  footer -->
-      <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <ul class="conta">
-                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/controlBooking}">객실 상황</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/controlRoom}">객실 정보</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/controlPrice}">요금 설정</a>
-                     </li>
-                  </ul>
-               </div>
+            <div class="jss109" id="calendarGrid">
+              <!-- 달력 날짜 그리드가 JS로 렌더링됩니다. -->
             </div>
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-10 offset-md-1">
-
-                        <p>
-                        © 2025 All Rights Reserved.</a>
-                        <a>Distributed YDH</a>
-                        </p>
-
-                     </div>
-                  </div>
-               </div>
+          </div>
+          <div class="jss120 jss82" style="width:100%;">
+            <div class="jss116" id="todayLabel">오늘 : 2025.07.09</div>
+            <ul class="jss121 jss119" style="margin-bottom:16px;">
+              <li><i class="jss122 jss123"></i>객실 전체 예약완료</li>
+              <li><i class="jss122 jss124"></i>객실 일부 예약완료</li>
+              <li><i class="jss122 jss125"></i>선택날짜</li>
+            </ul>
+            <!-- 방 전체 막기 버튼 추가 -->
+            <div style="width:100%;display:flex;justify-content:center;margin-bottom:18px;">
+              <button id="blockAllRoomsBtn" class="block-all-btn">방 전체 막기</button>
             </div>
-         </div>
-      </footer>
+            <div id="roomCardList" style="margin-top:0; display:flex; flex-wrap:wrap; gap:16px;"></div>
+          </div>
+        </div>
+      </div>
+
       <!-- end footer -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
       <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
-     <!-- 카카오맵 -->
-      <script src="js/map.js"></script>
-     <!-- 떠나요-->
-      <script src="js/booking.js"></script>
-      <!-- 달력 -->
-      <script src="js/reservation.js"></script>
+      <script src="js/calendar.js"></script>
    </body>
 </html>

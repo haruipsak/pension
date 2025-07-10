@@ -1,0 +1,478 @@
+/* 달력 날짜 선택 UI 및 예약관리 화면에 필요한 최소 CSS */
+
+/* 기본 박스 모델 및 폰트 설정 */
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+body {
+  color: #484848;
+  margin: 0;
+  font-size: 13px;
+  font-family: dotum,apple sd gothic neo,malgun gothic;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: #ffffff;
+}
+
+/* Typography */
+.MuiTypography-h3 {
+  color: #333333;
+  font-size: 15px;
+  font-family: dotum,apple sd gothic neo,malgun gothic;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+/* 달력 UI 컨테이너 */
+.jss85 {
+  margin-bottom: 24px;
+}
+.jss86 {
+  border-bottom: 2px solid #333;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+.jss80 {
+  display: flex;
+  align-items: top;
+}
+.jss81 {
+  margin-right: 12px;
+}
+.jss84 .jss80 {
+  display: flex;
+  flex-direction: column;
+}
+.jss84 .jss81 {
+  margin-right: 0;
+}
+.jss84 .jss82 {
+  margin-top: 12px;
+}
+
+/* 달력 그리드 */
+.MuiGrid-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.MuiGrid-align-items-xs-center {
+  align-items: center;
+}
+.jss88 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.jss89 {
+  width: 24px;
+  cursor: pointer;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.jss90 {
+  color: #757575;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.jss91 > div {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  margin-left: 3px;
+}
+.jss91 > div:first-child {
+  margin-left: 0;
+}
+.jss92 > div {
+  width: 36px;
+  border: 1px solid #ccc;
+  height: 36px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-left: 3px;
+  margin-bottom: 3px;
+  justify-content: center;
+}
+.jss92 > div:first-child {
+  margin-left: 0;
+}
+.jss93 {
+  cursor: pointer;
+}
+.jss94 {
+  position: relative;
+}
+.jss95 {
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.jss96::before {
+  top: 0;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  background: #47b881;
+}
+.jss96 .jss95 {
+  color: #fff;
+}
+.jss98::after {
+  top: 0;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  border: 2px solid rgba(0,0,0,0.7) !important;
+  height: 100%;
+  content: "";
+  z-index: 2;
+  position: absolute;
+  background: rgba(222,222,222,0.3);
+}
+.jss99 {
+  font-size: 14px;
+}
+.jss102 {
+  color: #e34c4c;
+}
+.jss103 {
+  color: #3f52b5;
+}
+.jss104 {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.jss109 {
+  width: 274px;
+  padding: 2px;
+}
+.jss111 .jss109 {
+  width: 100%;
+}
+.jss111 .jss92 > div {
+  flex: 1;
+}
+.jss111 .jss91 > div {
+  flex: 1;
+}
+
+/* 하단 안내 및 버튼 */
+.jss120 {
+  margin-top: 12px;
+}
+.jss116 {
+  color: #333;
+  font-weight: 600;
+}
+.jss118 {
+  margin-top: 14px;
+}
+.jss118 > span {
+  margin-right: 8px;
+}
+.jss121 {
+  font-size: 12px;
+}
+.jss121 > li {
+  display: inline-block;
+  margin-right: 8px;
+}
+.jss122 {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+.jss123 {
+  background: #61616a;
+}
+.jss124 {
+  background: #47b881;
+}
+.jss125 {
+  border: 1px solid #61616a;
+  background: #f3f3f3;
+}
+
+/* 버튼 스타일 (Material Button 일부) */
+.MuiButton-root {
+  color: #666666;
+  padding: 6px 16px;
+  font-size: 1rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  font-family: dotum,apple sd gothic neo,malgun gothic;
+  font-weight: bold;
+  line-height: 1.75;
+  border-radius: 4px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  background-color: #fff;
+  transition: background-color 250ms;
+}
+.MuiButton-root:hover {
+  background-color: rgba(102, 102, 102, 0.08);
+}
+.MuiButton-label {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.MuiButton-outlinedSecondary {
+  color: #575757;
+  border: 1px solid rgba(87, 87, 87, 0.5);
+}
+.MuiButton-outlinedSizeSmall {
+  padding: 3px 9px;
+  font-size: 0.8125rem;
+}
+
+/* 선택된 날짜 스타일 */
+.selected-day {
+  background: #f3f3f3 !important;
+  border-radius: 0 !important;
+  border: 1px solid #61616a !important;
+}
+.selected-day .jss95 {
+  color: #333 !important;
+}
+
+/* 모바일 반응형: 카드 2개씩 한 줄, 여백, 박스 스타일 */
+#roomCardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.room-card-box {
+  width: 48%;
+  max-width: 160px;
+  min-width: 120px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .room-card-box {
+    width: 48%;
+    max-width: 160px;
+    min-width: 120px;
+  }
+}
+@media (min-width: 601px) {
+  .room-card-box {
+    width: 23%;
+    max-width: 160px;
+    min-width: 120px;
+  }
+}
+.room-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #eee;
+  background: #fff;
+  transition: box-shadow 0.2s;
+  border: 1.5px solid #f2f2f2;
+  min-height: 80px;
+}
+.room-card:hover {
+  box-shadow: 0 4px 16px #ccc;
+}
+
+/* 달력 색상 표시(legend와 일치) */
+.calendar-day.all-reserved {
+  background: #61616a !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+.calendar-day.partial-reserved {
+  background: #47b881 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+.calendar-day.selected-day {
+  background: #1976d2 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+.calendar-day.today-box {
+  background: #ffb74d !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+/* 오늘 날짜(달력) - 연한 주황색 */
+.jss96, .calendar-day.today {
+  background: #ffe9c7 !important;
+  border-radius: 50%;
+  color: #d97a00 !important;
+}
+
+/* 카드 전체 배경색으로 예약상태 표시 (채도 낮게) */
+.room-card.reserved {
+  background: #ffeaea !important;
+  border: 1.5px solid #ffb2b2 !important;
+}
+.room-card.available {
+  background: #e6fbe6 !important;
+  border: 1.5px solid #b2e5b2 !important;
+}
+
+/* 카드 내부 레이아웃 개선 */
+.room-card .MuiCardHeader-root {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding-left: 18px;
+}
+.room-card .MuiCardHeader-content {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.room-card .MuiCardHeader-title {
+  font-size: 1em;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 오늘/선택날짜/범례 색상 일치 (선택날짜: #1976d2, 오늘: #ffb74d) */
+.calendar-day.selected-day {
+  background: #1976d2 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+.calendar-day.today-box {
+  background: #ffb74d !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+/* 오늘 범례 스타일 */
+.legend-today {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: #ffb74d;
+  border-radius: 4px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* 카드: 예약상태 색상(연한 초록/빨강), 텍스트 제거 */
+.room-card.reserved {
+  background: #ffeaea !important;
+  border: 1.5px solid #ffb2b2 !important;
+}
+.room-card.available {
+  background: #e6fbe6 !important;
+  border: 1.5px solid #b2e5b2 !important;
+}
+.statusIcon { display: none; }
+
+.mt5 { margin-top: 32px; }
+.mt3 { margin-top: 16px; }
+
+/* 범례 네모(전체예약완료/일부예약완료/선택날짜/오늘) 크기, 색상, 모양 통일 */
+.jss121 .jss122 {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  margin-right: 6px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.jss123 { background: #61616a; } /* 전체예약완료 */
+.jss124 { background: #47b881; } /* 일부예약완료 */
+.jss125 { background: #1976d2; } /* 선택날짜(파랑) */
+.legend-today, .jss126 { background: #ffb74d; width: 18px; height: 18px; border-radius: 4px; margin-right: 6px; display: inline-block; vertical-align: middle; }
+
+/* 카드 버튼 중앙 정렬 및 하단 여백 */
+.room-card .MuiCardActions-root {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+/* 방 이름 폰트 크기 축소 */
+.room-card .MuiCardHeader-title {
+  font-size: 1em;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 떠나요 버튼 스타일 */
+.ddnayo-btn {
+  display: inline-block;
+  padding: 7px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  background: #1976d2;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 0;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #e0e0e0;
+}
+.ddnayo-btn:hover {
+  background: #1251a3;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 방 전체 막기 버튼 스타일 */
+.block-all-btn {
+  width: 330px;
+  max-width: 98vw;
+  min-width: 220px;
+  height: 60px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  background: #e34c4c;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #f3bcbc;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.block-all-btn:hover {
+  background: #b92d2d;
+  box-shadow: 0 4px 16px #eebbbb;
+}
+@media (max-width: 600px) {
+  .block-all-btn {
+    width: 98vw;
+    min-width: 0;
+    font-size: 1em;
+    height: 48px;
+  }
+}
+.jss121.jss119 {
+  line-height: 2.1;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
