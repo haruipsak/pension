@@ -3,7 +3,7 @@
 <mapper namespace="com.pension.mapper.pensionMapper">
     <select id="selectAdmin" resultType="com.pension.vo.adminVo">
         SELECT USERID
-        FROM ADMIN
+        FROM admin
         WHERE USERID = #{userId}
             AND USERPW = #{userPw}
     </select>
