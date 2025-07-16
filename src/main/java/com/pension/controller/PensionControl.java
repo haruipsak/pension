@@ -40,9 +40,9 @@ public class PensionControl {
         return "about";
     }
 
-    @RequestMapping("/room")
+    @RequestMapping("/reserv")
     public String room(){
-        return "room";
+        return "reserv";
     }
 
     @RequestMapping("/gallery")

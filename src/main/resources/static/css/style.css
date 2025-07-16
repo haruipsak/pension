@@ -939,7 +939,9 @@ ul.social_icon li a:hover {
 .inner_page .blog {
      margin-top: 90px;
 }
-
-
-
-
+.carousel-item img{
+     height: 800px; !important;
+}
+.add_img {
+     padding-left: 30%;
+}

@@ -266,6 +266,14 @@
         border-right: 10px solid transparent;
         border-left: 10px solid #0f69c6;
     }
+    .contact-responsive-img {
+        width: 105%;
+        padding: 15px;
+    }
+    #ddnayoReserv{
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .contact-responsive-img {
@@ -278,9 +286,7 @@
     margin-right: auto;
 }
 
-@media (max-width: 768px) {
-    .contact-responsive-img {
-        width: 105%;
-        padding: 15px;
-    }
+#ddnayoReserv{
+    width: 100%;
+    min-height: 2500px;
 }
