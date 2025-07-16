@@ -267,3 +267,20 @@
         border-left: 10px solid #0f69c6;
     }
 }
+
+.contact-responsive-img {
+    display: block;
+    padding: 30px;
+    width: 100%;
+    height: auto;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .contact-responsive-img {
+        width: 105%;
+        padding: 15px;
+    }
+}
