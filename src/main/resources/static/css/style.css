@@ -939,9 +939,28 @@ ul.social_icon li a:hover {
 .inner_page .blog {
      margin-top: 90px;
 }
-.carousel-item img{
-     height: 800px; !important;
-}
 .add_img {
      padding-left: 30%;
+}
+.carousel-item img {
+     width: 100%; !important    /* 이미지가 컨테이너의 가로 폭을 꽉 채우도록 합니다. */
+     height: 100%;  !important   /* 이미지가 컨테이너의 높이를 꽉 채우도록 합니다. */
+     display: block; !important;    /* 이미지 하단의 불필요한 공백을 제거합니다. */
+}
+
+.carousel-inner {
+     height: 850px; /* 데스크톱에서 카루셀이 차지할 높이 (예시, 원하는 높이로 조절) */
+}
+
+@media (max-width: 768px) { /* 768px 이하 화면 (태블릿 및 모바일) */
+     .carousel-inner {
+          height: 100%; !important /* 모바일에서는 카루셀 높이를 더 줄일 수 있습니다. */
+     }
+     .add_img {
+          padding: 0;
+     }
+     .carousel-item img {
+          height: 200px; !important
+          width: auto; !important
+     }
 }
