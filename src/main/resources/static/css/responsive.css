@@ -88,7 +88,6 @@
         padding-top: 9px;
     }
     .navigation.navbar-dark .navbar-toggler-icon {
-        background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
     .d_none {
@@ -160,7 +159,6 @@
         padding: 0px 19px 40px 20px;
     }
     .navigation.navbar-dark .navbar-toggler-icon {
-        background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
     .d_none {
