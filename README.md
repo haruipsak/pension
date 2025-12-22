@@ -6,7 +6,7 @@
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 기술 스택
 
 ### Backend & Frontend
 * **언어 (Languages)**
@@ -26,7 +26,7 @@
 
 ---
 
-## 🚀 Key Achievements
+## 🚀 주요 성과
 
 1. **CI/CD 자동화 배포 및 형상 관리**
     * Docker와 Jenkins를 연동하여 소스 코드 병합 시 빌드부터 배포까지 전 과정 자동화
